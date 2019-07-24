@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>UPC Converter</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>	
+	<body>
+	
+		<div>
+		<input type="number" placeholder="enter start UPC" /><br>
+		</div>
+			<div>
+		<input type="number" placeholder="How many UPC you want" /><br>
+		</div>
+			<div>
+		<p>Result:</p>
+		<text placeholder="result shows here">
+		
+		</text>
+		</div>
+	</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+	<script>
+		<!-----------jquery-------------->
+		//from IP Geolocation API
+        var ip;
+		var today = new Date();
+		var m = today.getMonth()+1;
+		var d=today.getDate();
+		var t=today.getHours();
+		var current= m+'/'+d+' '+t
+		var recordArray={};
+		  recordArray['current']=current;
+		  console.log(recordArray);
+			connectDB(recordArray);
+  //Firebase
+        function connectDB(thisip){
+            //initialize firebase
+            var config={
+                apiKey:"AIzaSyA7l48kyYuE6YJzofESse0Wlhcw4WdhUUo",
+                authDomain:"tobeyyyy-github.firebaseio.com",
+                databaseURL:"https://tobeyyyy-github.firebaseio.com",
+                projectId:"tobeyyyy-github",
+                storageBucket:"tobeyyyy-github.appspot.com",
+                messagingSenderId:"600571938704"
+            }
+            firebase.initializeApp(config);
+            var helloMessageReference=firebase.database().ref("appAccount");
+            var newarrayRef=helloMessageReference.push();
+            newarrayRef.set(thisip);
+        }
+    
+	</script>
+</html>
