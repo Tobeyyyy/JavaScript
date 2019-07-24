@@ -18,7 +18,7 @@
 		
 		</text>
 		</div>
-		<input id="clickMe" type="button" onclick="uploadDB();" value="Submit">
+		<input id="clickMe" type="button" onclick="uploadDB(timeStamp);" value="Submit">
 	</body>
     <script src="js/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -45,6 +45,7 @@
 		
 		var recordArray={};
 		function uploadDB(timeStamp){
+		console.log(timeStamp);
 			var startupc=$('#startupc').val();
 			var upcqty=$('#upcqty').val();
 			recordArray['timeStamp']=timeStamp;
