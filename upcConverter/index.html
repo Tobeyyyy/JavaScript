@@ -7,14 +7,14 @@
 	<body>
 	
 		<div>
-		<input type="number" placeholder="enter start UPC" /><br>
+		<input type="number" placeholder="enter start UPC" id="startupc" /><br>
 		</div>
 			<div>
-		<input type="number" placeholder="How many UPC you want" /><br>
+		<input type="number" placeholder="How many UPC you want" id="upcqty"/><br>
 		</div>
 			<div>
 		<p>Result:</p>
-		<text placeholder="result shows here">
+		<text placeholder="result shows here" id="result">
 		
 		</text>
 		</div>
@@ -27,16 +27,29 @@
 		<!-----------jquery-------------->
 		//from IP Geolocation API
 		
-        var ip;
-		var today = new Date();
-		var m = today.getMonth()+1;
-		var d=today.getDate();
-		var h=today.getHours();
-		var t=today.getMinutes();
-		var current= m+'/'+d+' '+h+':'+t;
+		function getTime(){
+			var today = new Date();
+			var m = today.getMonth()+1;
+			var d=today.getDate();
+			var h=today.getHours();
+			var t=today.getMinutes();
+			var current= m+'/'+d+' '+h+':'+t;
+			return current;
+		}
+		function getInputData(){
+			var startupc=$('#startupc').val();
+			var upcqty=$('#upcqty').val();
+			console.log(startupc);
+		}
+		var timeStamp=getTime();
+		
 		var recordArray={};
-		function uploadDB(){
-			recordArray['current']=current;
+		function uploadDB(timeStamp){
+			var startupc=$('#startupc').val();
+			var upcqty=$('#upcqty').val();
+			recordArray['timeStamp']=timeStamp;
+			recordArray['startupc']=startupc;
+			recordArray['startupc']=startupc;
 			console.log(recordArray);
 			connectDB(recordArray);
 		}
