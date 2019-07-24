@@ -18,7 +18,7 @@
 		
 		</text>
 		</div>
-		<input id="clickMe" type="button" onclick="connectDB();" value="Submit">
+		<input id="clickMe" type="button" onclick="uploadDB();" value="Submit">
 	</body>
     <script src="js/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -35,10 +35,12 @@
 		var m=today.getMinutes();
 		var current= m+'/'+d+' '+h+':'+m;
 		var recordArray={};
-		  recordArray['current']=current;
-		  console.log(recordArray);
-		
-			//connectDB(recordArray);
+		function uploadDB(){
+			recordArray['current']=current;
+			console.log(recordArray);
+			connectDB(recordArray);
+		}
+	
   //Firebase
         function connectDB(thisip){
             //initialize firebase
