@@ -11,15 +11,15 @@
 	</div>
 	<div class="content">
 		<div>
-		<input type="number" placeholder="enter start UPC" id="startupc" onchange="focusOnQty()"/><br>
+		<input type="number" placeholder="enter start UPC" id="startupc" onchange="focusOnQty()" value="88524985761"/><br>
 		</div>
 			<div>
-		<input type="number" placeholder="How many UPC you want" id="upcqty" onchange="focusOnSubmit()"/><br>
+		<input type="number" placeholder="How many UPC you want" id="upcqty" onchange="focusOnSubmit()" value="7"/><br>
 		</div>
 		<input id="clickMe" type="button" onclick="uploadDB(timeStamp);" value="Submit">
 			<div>
 		<p>Result:</p>
-		<text class="result_box" id="result_box">Result shows here...</text>
+		<div class="result_box" id="result_box">Result shows here...</div>
 		</div>
 		</div>
 	</body>
@@ -56,7 +56,16 @@
 			var upcqty=$('#upcqty').val();
 			console.log(startupc);
 		}
-
+		function showResult(upc_string){
+			var html_content='<table><tr><th>UPC Code</th><th>UPC Code - Inner Pack</th><th>UPC Code - Case</th></tr>';
+		//	var loopnum=Math.ceil((upc_string.length-1)/3);
+			for (var i=0;i<upc_string.length-1;i=i+3){
+				html_content+='<tr><td>'+upc_string[i]+'</td><td>'+upc_string[i+1]+'</td><td>'+upc_string[i+2]+'</td>';
+				html_content+='</tr>';
+			}
+			html_content+='</table>';
+			$('#result_box').html(html_content);
+		}
 		var timeStamp=getTime();
 		
 		var recordArray={};
@@ -67,14 +76,16 @@
 			var upcqty=$('#upcqty').val();
 			if(startupc!=='' && upcqty!=''){
 				var upc_string=ConvertMultiple(startupc,upcqty);
-				$('#result_box').html(upc_string);
+				//$('#result_box').html(upc_string);
+				
 				upc_string=upc_string.split(',');
+				showResult(upc_string);
 				recordArray['timeStamp']=timeStamp;
 				recordArray['startupc']=upc_string[0].substring(0,11);
 				var last_upc=upc_string.length-2;
 				recordArray['endupc']=upc_string[last_upc].substring(0,11);
 				recordArray['upcqty']=upcqty;
-				recordArray['upc_string']=upc_string;
+				recordArray['upc_string('+upc_string.length+')']=upc_string;
 				console.log(recordArray);
 				connectDB(recordArray);	
 			}else{
