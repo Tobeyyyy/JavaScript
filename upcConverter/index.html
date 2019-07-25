@@ -13,15 +13,16 @@
 		<div>
 		<input type="number" placeholder="enter start UPC" id="startupc" onchange="focusOnQty()" value="88524985761"/><br>
 		</div>
-			<div>
+		<div>
 		<input type="number" placeholder="How many UPC you want" id="upcqty" onchange="focusOnSubmit()" value="7"/><br>
 		</div>
 		<input id="clickMe" type="button" onclick="uploadDB(timeStamp);" value="Submit">
-			<div>
-		<p>Result:</p>
-		<div class="result_box" id="result_box">Result shows here...</div>
+		<div>
+			<p>Result:</p>
+			<div class="result_box" id="result_box">Result shows here...</div>
+			<input id="exportTable" type="button" onclick="exportTableToExcel('upc_table');" value="Export to Excel">
 		</div>
-		</div>
+	</div>
 	</body>
     <script src="js/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -57,7 +58,7 @@
 			console.log(startupc);
 		}
 		function showResult(upc_string){
-			var html_content='<table><tr><th>UPC Code</th><th>UPC Code - Inner Pack</th><th>UPC Code - Case</th></tr>';
+			var html_content='<table id="upc_table"><tr><th>UPC Code</th><th>UPC Code - Inner Pack</th><th>UPC Code - Case</th></tr>';
 		//	var loopnum=Math.ceil((upc_string.length-1)/3);
 			for (var i=0;i<upc_string.length-1;i=i+3){
 				html_content+='<tr><td>'+upc_string[i]+'</td><td>'+upc_string[i+1]+'</td><td>'+upc_string[i+2]+'</td>';
