@@ -12,13 +12,12 @@
 			<div>
 		<input type="number" placeholder="How many UPC you want" id="upcqty"/><br>
 		</div>
+				<input id="clickMe" type="button" onclick="uploadDB(timeStamp);" value="Submit">
+
 			<div>
 		<p>Result:</p>
-		<text placeholder="result shows here" id="result">
-		
-		</text>
+		<text class="result_box" id="result_box">Result shows here...</text>
 		</div>
-		<input id="clickMe" type="button" onclick="uploadDB(timeStamp);" value="Submit">
 	</body>
     <script src="js/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -26,7 +25,7 @@
 	<script>
 		<!-----------jquery-------------->
 		//from IP Geolocation API
-		
+
 		function getTime(){
 			var today = new Date();
 			var m = today.getMonth()+1;
@@ -41,16 +40,24 @@
 			var upcqty=$('#upcqty').val();
 			console.log(startupc);
 		}
+
 		var timeStamp=getTime();
 		
 		var recordArray={};
 		function uploadDB(timeStamp){
 		console.log(timeStamp);
+
 			var startupc=$('#startupc').val();
 			var upcqty=$('#upcqty').val();
+			var upc_string=ConvertMultiple(startupc,upcqty);
+			$('#result_box').html(upc_string);
+			upc_string=upc_string.split(',');
 			recordArray['timeStamp']=timeStamp;
-			recordArray['startupc']=startupc;
+			recordArray['startupc']=upc_string[0][0:10];
+			var last_upc=upc_string.length-2;
+			recordArray['endupc']=upc_string[last_upc][0:10];
 			recordArray['upcqty']=upcqty;
+			recordArray['upc_string']=upc_string;
 			console.log(recordArray);
 			connectDB(recordArray);
 		}
@@ -71,6 +78,16 @@
             var newarrayRef=helloMessageReference.push();
             newarrayRef.set(thisip);
         }
-    
+	
+
+	
 	</script>
+	<style>
+	.result_box {
+  width: 300px;
+  height: 100px;  
+  padding: 50px;
+  border: 1px solid red;
+}
+	</style>
 </html>
