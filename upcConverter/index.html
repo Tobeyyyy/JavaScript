@@ -53,9 +53,9 @@
 			$('#result_box').html(upc_string);
 			upc_string=upc_string.split(',');
 			recordArray['timeStamp']=timeStamp;
-			recordArray['startupc']=upc_string[0][0:10];
+			recordArray['startupc']=upc_string[0].substring(0,10);
 			var last_upc=upc_string.length-2;
-			recordArray['endupc']=upc_string[last_upc][0:10];
+			recordArray['endupc']=upc_string[last_upc].substring(0,10);
 			recordArray['upcqty']=upcqty;
 			recordArray['upc_string']=upc_string;
 			console.log(recordArray);
