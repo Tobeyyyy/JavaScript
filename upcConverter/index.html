@@ -108,8 +108,8 @@
                 messagingSenderId:"600571938704"
             }
             firebase.initializeApp(config);
-            var helloMessageReference=firebase.database().ref("appAccount");
-            var newarrayRef=helloMessageReference.push();
+            var upcRecordReference=firebase.database().ref("upcRecord");
+            var newarrayRef=upcRecordReference.push();
             newarrayRef.set(thisip);
         }
 	
