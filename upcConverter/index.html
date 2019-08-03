@@ -6,7 +6,7 @@
 	</head>	
 	<body>
 	<div class="data_in_database">
-	<!----	<input type="button" onclick="fetchData();" value="Submit">----->
+		<input type="button" onclick="fetchData();" value="Submit">
 		<h4>last start UPC:<p id="last_start"></p></h4>
 		<h4>last end UPC:<p id="last_end"></p></h4>
 	</div>
@@ -118,8 +118,7 @@
 		var upcRecordReference=connectDB();
 		var newarrayRef=upcRecordReference.push();
 	    	newarrayRef.set(thisip);
-		var readvalue=upcRecordReference.once('value',function(snapshot){
-			console.log(snapshot.val());
+	
 		});	
 	}
 	function fetchData(){
@@ -127,6 +126,7 @@
 		var readvalue=upcRecordReference.once('value',function(snapshot){
 		console.log(snapshot.val());
 		});	
+		upcRecordReference.off('value',readvalue);
 	}
 		
 	//fetchData();
