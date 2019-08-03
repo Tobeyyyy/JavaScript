@@ -121,8 +121,10 @@
 	}
 	function fetchData(){
 		var upcRecordReference=connectDB();
-		var readvalue=upcRecordReference.val();
-		console.log(readvalue);
+		var readvalue=upcRecordReference.on('value',function(snapshot){
+			console.log(snapshot.val());
+		});
+		
 	}
 fetchData();
 	
