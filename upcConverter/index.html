@@ -118,13 +118,11 @@
 		var upcRecordReference=connectDB();
 		var newarrayRef=upcRecordReference.push();
 	    	newarrayRef.set(thisip);
-	
-		});	
 	}
 	function fetchData(){
 		var upcRecordReference=connectDB();
 		var readvalue=upcRecordReference.once('value',function(snapshot){
-		console.log(snapshot.val());
+			console.log(snapshot.val());
 		});	
 		upcRecordReference.off('value',readvalue);
 	}
