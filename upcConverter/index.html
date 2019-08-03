@@ -107,23 +107,28 @@
                 storageBucket:"tobeyyyy-github.appspot.com",
                 messagingSenderId:"600571938704"
             }
-		firebase.initializeApp(config);
-		var upcRecordReference=firebase.database().ref("upcRecord");
-		return upcRecordReference;
-
-	
+	    return config;
+		//firebase.initializeApp(config);
+		//var upcRecordReference=firebase.database().ref("upcRecord");
+		//return upcRecordReference;
         }
 		
 	function pushData(thisip){
-		var upcRecordReference=connectDB();
+		//var upcRecordReference=connectDB();
+		var config=connectDB();
+		firebase.initializeApp(config);
+		var upcRecordReference=firebase.database().ref("upcRecord");
 		var newarrayRef=upcRecordReference.push();
 	    	newarrayRef.set(thisip);
 	}
 	function fetchData(){
-		var upcRecordReference=connectDB();
+		var config=connectDB();
+		firebase.initializeApp(config);
+		var upcRecordReference=firebase.database().ref("upcRecord");
+		//var upcRecordReference=connectDB();
 		var readvalue=upcRecordReference.once('value',function(snapshot){
-			console.log(snapshot.val());
-		});
+		console.log(snapshot.val());
+	});
 		
 	}
 fetchData();
