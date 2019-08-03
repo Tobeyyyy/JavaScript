@@ -107,23 +107,22 @@
                 storageBucket:"tobeyyyy-github.appspot.com",
                 messagingSenderId:"600571938704"
             }
-	    return config;
+		firebase.initializeApp(config);
+		var upcRecordReference=firebase.database().ref("upcRecord");
+		return upcRecordReference;
 
 	
         }
 		
 	function pushData(thisip){
-	
-		var config=connectDB();
-		firebase.initializeApp(config);
-            	var upcRecordReference=firebase.database().ref("upcRecord");
+		var upcRecordReference=connectDB();
 		var newarrayRef=upcRecordReference.push();
 	    	newarrayRef.set(thisip);
 	}
 	function fetchData(){
-	
+		var upcRecordReference=connectDB();
 	}
-
+fetchData();
 	
 	</script>
 
