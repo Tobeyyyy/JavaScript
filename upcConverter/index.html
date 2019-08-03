@@ -109,9 +109,13 @@
             }
             firebase.initializeApp(config);
             var upcRecordReference=firebase.database().ref("upcRecord");
-            var newarrayRef=upcRecordReference.push();
-            newarrayRef.set(thisip);
+		pushData(thisip,upcRecordReference);
         }
+		
+	function pushData(thisip,upcRecordReference){
+		var newarrayRef=upcRecordReference.push();
+	    	newarrayRef.set(thisip);
+	}
 	
 
 	
