@@ -16,7 +16,7 @@
 		<div>
 		<input type="number" placeholder="How many UPC you want" id="upcqty" onchange="focusOnSubmit()" value="7"/><br>
 		</div>
-		<input id="clickMe" type="button" onclick="pushData(timeStamp);" value="Submit">
+		<input id="clickMe" type="button" onclick="uploadDB(timeStamp);" value="Submit">
 		<div>
 			<p>Result:</p>
 			<div class="result_box" id="result_box">Result shows here...</div>
@@ -88,7 +88,7 @@
 				recordArray['upcqty']=upcqty;
 				recordArray['upc_string('+upc_string.length+')']=upc_string;
 				console.log(recordArray);
-				connectDB(recordArray);	
+				pushData(recordArray);	
 			}else{
 				alert('Please enter data!');
 				document.getElementById("startupc").focus(); 
