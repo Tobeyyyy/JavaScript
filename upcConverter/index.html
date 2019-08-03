@@ -6,6 +6,7 @@
 	</head>	
 	<body>
 	<div class="data_in_database">
+		<input type="button" onclick="fetchData();" value="Submit">
 		<h4>last start UPC:<p id="last_start"></p></h4>
 		<h4>last end UPC:<p id="last_end"></p></h4>
 	</div>
@@ -121,11 +122,11 @@
 	function fetchData(){
 		var upcRecordReference=connectDB();
 		var readvalue=upcRecordReference.once('value',function(snapshot){
-			console.log(snapshot.val());
+		console.log(snapshot.val());
 		});	
 	}
 		
-	fetchData();
+	//fetchData();
 	
 	</script>
 
