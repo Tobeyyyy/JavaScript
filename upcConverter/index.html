@@ -121,11 +121,11 @@
 	function fetchData(){
 		var upcRecordReference=connectDB();
 		var readvalue=upcRecordReference.once('value',function(snapshot){
-			console.log(snapshot.val());
+			console.log(snapshot.key);
 		});	
 	}
 		
-	//fetchData();
+	fetchData();
 	
 	</script>
 
